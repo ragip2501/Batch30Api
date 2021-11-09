@@ -1,5 +1,6 @@
 package com.techproed.day04;
 
+import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.junit.Assert;
 import org.junit.Test;
@@ -42,11 +43,19 @@ public class GetRequest01 {
             System.out.println("Content type : "+response.getContentType());//responseden gelen content type verir
             System.out.println("Status line : "+response.getStatusLine());//responseden geelen status line verir
             System.out.println("response.getHeaders() = " + response.getHeaders());
-
+            /*
             Assert.assertEquals(200,response.getStatusCode());
             //expected kısmı bize text olarak verilen degerdir, actual kısmı ise response den dönen değerdir.
+            //status code int deger döndürür
 
             Assert.assertEquals("application/json; charset=utf-8",response.getContentType());
             Assert.assertEquals("HTTP/1.1 200 OK",response.getStatusLine());
+            */
+
+            response.then().
+                    assertThat().
+                    statusCode(200).
+                    contentType(ContentType.JSON).
+                    statusLine("HTTP/1.1 200 OK");
         }
 }
