@@ -9,12 +9,11 @@ public class DummyTestBase {
     protected RequestSpecification spec03;
 
     @Before
-    public void setup(){
+    public void setUp(){
 
         spec03=new RequestSpecBuilder().
                 setBaseUri("http://dummy.restapiexample.com/api/v1").
                 build();
     }
-
 
 }
